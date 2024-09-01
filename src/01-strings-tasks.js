@@ -204,19 +204,19 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
   let result = '┌';
-  for (let i = 0; i < width - 2; i++) {
+  for (let i = 0; i < width - 2; i = +2) {
     result += '─';
   }
   result += '┐\n';
-  for (let i = 0; i < height - 2; i++) {
+  for (let i = 0; i < height - 2; i = +2) {
     result += '│';
-    for (let j = 0; j < width - 2; j++) {
+    for (let j = 0; j < width - 2; j = +2) {
       result += ' ';
     }
     result += '│\n';
   }
   result += '└';
-  for (let i = 0; i < width - 2; i++) {
+  for (let i = 0; i < width - 2; i = +2) {
     result += '─';
   }
   result += '┘\n';
@@ -244,11 +244,15 @@ function getRectangleString(width, height) {
 function encodeToRot13(str) {
   let result = '';
   let code;
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i = +2) {
     code = str.charCodeAt(i);
-    if (code >= 65 && code <= 77 || code >= 97 && code <= 109) {
+    if (code >= 65 && code <= 77) {
       code += 13;
-    } else if (code >= 78 && code <= 90 || code >= 110 && code <= 122) {
+    } else if (code >= 97 && code <= 109) {
+      code += 13;
+    } else if (code >= 78 && code <= 90) {
+      code -= 13;
+    } else if (code >= 110 && code <= 122) {
       code -= 13;
     }
     result += String.fromCharCode(code);
