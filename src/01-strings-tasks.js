@@ -19,7 +19,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(/* value1, value2 */) {
-  throw new Error('Not implemented');
+  return value1 + value2;
 }
 
 
@@ -35,7 +35,7 @@ function concatenateStrings(/* value1, value2 */) {
  *   ''      => 0
  */
 function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+  return value.length;
 }
 
 /**
@@ -52,7 +52,7 @@ function getStringLength(/* value */) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -66,7 +66,7 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+  return value.slice(7, -1);
 }
 
 
@@ -81,7 +81,7 @@ function extractNameFromTemplate(/* value */) {
  *   'cat'       => 'c'
  */
 function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+  return value[0];
 }
 
 /**
@@ -96,7 +96,7 @@ function getFirstChar(/* value */) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+  return value.trim();
 }
 
 /**
@@ -111,7 +111,7 @@ function removeLeadingAndTrailingWhitespaces(/* value */) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(/* value, count */) {
-  throw new Error('Not implemented');
+  return value.repeat(count);
 }
 
 /**
@@ -127,7 +127,7 @@ function repeatString(/* value, count */) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+  return str.replace(value, '');
 }
 
 /**
@@ -142,7 +142,7 @@ function removeFirstOccurrences(/* str, value */) {
  *   '<a>' => 'a'
  */
 function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+  return str.slice(1, -1);
 }
 
 
@@ -157,7 +157,7 @@ function unbracketTag(/* str */) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+  return str.toUpperCase();
 }
 
 /**
@@ -176,7 +176,7 @@ function convertToUpperCase(/* str */) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+  return str.split(';');
 }
 
 /**
@@ -203,7 +203,25 @@ function extractEmails(/* str */) {
  *
  */
 function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+  let result = "┌";
+  for (let i = 0; i < width - 2; i ++) {
+    result += "─";
+  }
+  result += "┐\n";
+  for (let i = 0; i < height - 2; i ++) {
+    result += "│";
+    for (let j = 0; j < width - 2; j ++) {
+      result += " ";
+    }
+    result += "│\n";
+  }
+  result += "└";
+  for (let i = 0; i < width - 2; i ++) {
+    result += "─";
+  }
+  result += "┘\n";
+
+  return result;
 }
 
 
@@ -224,7 +242,18 @@ function getRectangleString(/* width, height */) {
  *
  */
 function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+  let result = "";
+  let code;
+  for (let i = 0; i < str.length; i ++) {
+    code = str.charCodeAt(i);
+    if (code >= 65 && code <= 77 || code >= 97 && code <= 109) {
+      code += 13;
+    } else if (code >= 78 && code <= 90 || code >= 110 && code <= 122) {
+      code -= 13;
+    }
+    result += String.fromCharCode(code);
+  }
+  return result;
 }
 
 /**
@@ -241,7 +270,7 @@ function encodeToRot13(/* str */) {
  *   isString(new String('test')) => true
  */
 function isString(/* value */) {
-  throw new Error('Not implemented');
+  return typeof value === 'string';
 }
 
 
@@ -270,7 +299,13 @@ function isString(/* value */) {
  *   'K♠' => 51
  */
 function getCardId(/* value */) {
-  throw new Error('Not implemented');
+  let suits = ['♣', '♦', '♥', '♠'];
+  let ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+  let suitIndex = suits.indexOf(value[1]);
+  let rankIndex = ranks.indexOf(value[0]);
+
+  return suitIndex * ranks.length + rankIndex;
 }
 
 
