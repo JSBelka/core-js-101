@@ -203,18 +203,12 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  let result = '';
-  const corner = '┌';
-  const topBottom = `${corner + '─'.repeat(width - 2)}┐\n`;
-  const middleRow = `│${' '.repeat(width - 2)}│\n`;
-
-  result += topBottom;
+  let rectangle = `┌${'─'.repeat(width - 2)}┐\n`;
   for (let i = 0; i < height - 2; i = +1) {
-    result += middleRow;
+    rectangle += `│${' '.repeat(width - 2)}│\n`;
   }
-  result += topBottom;
-
-  return result;
+  rectangle += `└${'─'.repeat(width - 2)}┘\n`;
+  return rectangle;
 }
 
 
