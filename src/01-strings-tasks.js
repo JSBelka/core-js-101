@@ -279,10 +279,13 @@ function isString(value) {
 function getCardId(value) {
   const suits = ['♣', '♦', '♥', '♠'];
   const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-
-  const suitIndex = suits.indexOf(value[1]);
-  const rankIndex = ranks.indexOf(value[0]);
-
+  let rankIndex;
+  const suitIndex = suits.indexOf(value[value.length - 1]);
+  if (value.length > 2) {
+    rankIndex = ranks.indexOf(value[0] + value[1]);
+  } else {
+    rankIndex = ranks.indexOf(value[0]);
+}
   return suitIndex * ranks.length + rankIndex;
 }
 
