@@ -227,22 +227,10 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  let result = '';
-  let code;
-  for (let i = 0; i < str.length; i = +2) {
-    code = str.charCodeAt(i);
-    if (code >= 65 && code <= 77) {
-      code += 13;
-    } else if (code >= 97 && code <= 109) {
-      code += 13;
-    } else if (code >= 78 && code <= 90) {
-      code -= 13;
-    } else if (code >= 110 && code <= 122) {
-      code -= 13;
-    }
-    result += String.fromCharCode(code);
-  }
-  return result;
+  return str.replace(/[a-zA-Z]/g, char => {
+    const base = char <= 'Z' ? 65 : 97;
+    return String.fromCharCode(base + ((char.charCodeAt(0) - base + 13) % 26));
+  });
 }
 
 /**
