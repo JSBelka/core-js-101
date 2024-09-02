@@ -247,8 +247,13 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  // eslint-disable-next-line no-unused-expressions
-  typeof value === 'string' || value instanceof String;
+  if (typeof value === 'string') {
+    return true;
+  }
+  if (value instanceof String) {
+    return true;
+  }
+  return false;
 }
 
 
