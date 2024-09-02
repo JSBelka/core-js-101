@@ -285,7 +285,7 @@ function getCardId(value) {
     rankIndex = ranks.indexOf(value[0] + value[1]);
   } else {
     rankIndex = ranks.indexOf(value[0]);
-}
+  }
   return suitIndex * ranks.length + rankIndex;
 }
 
