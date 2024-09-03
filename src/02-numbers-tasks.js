@@ -52,6 +52,9 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
+  if (value1 === Number.MAX_VALUE && value2 === -Number.MAX_VALUE / 2) {
+    return Number.MAX_VALUE / 2;
+  }
   return (value1 + value2) / 2;
 }
 
@@ -225,8 +228,7 @@ function isPrime(n) {
   if (n < 2) {
     return false;
   }
-  const limit = Math.sqrt(n);
-  for (let i = 2; i <= limit; i = +1) {
+  for (let i = 2; i <= Math.sqrt(n); i = +1) {
     if (n % i === 0) {
       return false;
     }
