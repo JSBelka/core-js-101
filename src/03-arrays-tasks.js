@@ -188,15 +188,8 @@ function getStringsLength(arr) {
  *    [ 1, 'b', 'c'], 'x', 0  => [ 'x', 1, 'b', 'c' ]
  */
 function insertItem(arr, item, index) {
-  const result = [];
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < arr.length; i++) {
-    if (i === index) {
-      result.push(item);
-    }
-    result.push(arr[i]);
-  }
-  return result;
+  arr.splice(index, 0, item);
+  return arr;
 }
 
 /**
