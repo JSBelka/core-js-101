@@ -680,8 +680,20 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  // eslint-disable-next-line no-shadow
+  const group = new Map();
+  // eslint-disable-next-line no-restricted-syntax
+  for (const item of array) {
+    const key = keySelector(item);
+    const value = valueSelector(item);
+    if (group.has(key)) {
+      group.get(key).push(value);
+    } else {
+      group.set(key, [value]);
+    }
+  }
+  return group;
 }
 
 
@@ -690,7 +702,7 @@ function group(/* array, keySelector, valueSelector */) {
  * and flattens the resulting sequences into one array.
  *
  * @param {array} arr
- * @param {Function} childrenSelector, a transform function to apply to each element
+ * @param childrenSelector
  *                                     that returns an array of children
  * @return {array}
  *
@@ -698,8 +710,8 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.flatMap(childrenSelector);
 }
 
 
@@ -715,8 +727,13 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  let current = arr;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const index of indexes) {
+    current = current[index];
+  }
+  return current;
 }
 
 
@@ -738,8 +755,19 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const result = [];
+  if (arr.length % 2 === 0) {
+    // eslint-disable-next-line no-plusplus
+    for (let i = arr.length / 2; i < arr.length; i++) {
+      result.push(arr[i]);
+    }
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < arr.length / 2; i++) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
 }
 
 
