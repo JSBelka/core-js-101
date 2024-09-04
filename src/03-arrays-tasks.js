@@ -756,18 +756,11 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  const result = [];
-  if (arr.length % 2 === 0) {
-    // eslint-disable-next-line no-plusplus
-    for (let i = arr.length / 2; i < arr.length; i++) {
-      result.push(arr[i]);
-    }
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < arr.length / 2; i++) {
-      result.push(arr[i]);
-    }
-  }
-  return result;
+  const len = arr.length;
+  const mid = Math.floor(len / 2);
+  const head = arr.slice(0, mid);
+  const tail = arr.slice(mid + (len % 2));
+  return [...tail, ...arr.slice(mid, mid + (len % 2)), ...head];
 }
 
 
