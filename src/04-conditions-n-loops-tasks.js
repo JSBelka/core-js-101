@@ -528,20 +528,20 @@ function getMatrixProduct(m1, m2) {
 function evaluateTicTacToePosition(position) {
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < 3; i++) {
-    if (position[i][0] === position[i][1] && position[i][0] === position[i][2]) {
+    if (position[i][0] && position[i][0] === position[i][1] && position[i][0] === position[i][2]) {
       return position[i][0];
     }
   }
   // eslint-disable-next-line no-plusplus
   for (let j = 0; j < 3; j++) {
-    if (position[0][j] === position[1][j] && position[0][j] === position[2][j]) {
+    if (position[0][j] && position[0][j] === position[1][j] && position[0][j] === position[2][j]) {
       return position[0][j];
     }
   }
-  if (position[0][0] === position[1][1] && position[0][0] === position[2][2]) {
+  if (position[0][0] && position[0][0] === position[1][1] && position[0][0] === position[2][2]) {
     return position[0][0];
   }
-  if (position[0][2] === position[1][1] && position[0][2] === position[2][0]) {
+  if (position[0][2] && position[0][2] === position[1][1] && position[0][2] === position[2][0]) {
     return position[0][2];
   }
   return undefined;
