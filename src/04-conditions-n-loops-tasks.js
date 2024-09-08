@@ -449,6 +449,9 @@ function getCommonDirectoryPath(pathes) {
       j++;
     }
     const lastSlashIndex = common.lastIndexOf('/', j);
+    if (lastSlashIndex === -1) {
+      return '';
+    }
     common = common.substring(0, lastSlashIndex + 1);
   }
   if (common === '' || common === '/') {
