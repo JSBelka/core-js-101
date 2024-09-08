@@ -175,7 +175,7 @@ function isInsideCircle(circle, point) {
   const lineX = point.x - circle.center.x;
   const lineY = point.y - circle.center.y;
   // eslint-disable-next-line no-restricted-properties
-  return Math.pow(lineX, 2) + Math.pow(lineY, 2) <= Math.pow(circle.radius, 2);
+  return Math.pow(lineX, 2) + Math.pow(lineY, 2) < Math.pow(circle.radius, 2);
 }
 
 
