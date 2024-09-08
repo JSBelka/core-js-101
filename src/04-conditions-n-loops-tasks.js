@@ -448,7 +448,8 @@ function getCommonDirectoryPath(pathes) {
       // eslint-disable-next-line no-plusplus
       j++;
     }
-    common = common.substring(0, j);
+    const lastSlashIndex = common.lastIndexOf('/', j);
+    common = common.substring(0, lastSlashIndex + 1);
   }
   if (common === '' || common === '/') {
     return common;
