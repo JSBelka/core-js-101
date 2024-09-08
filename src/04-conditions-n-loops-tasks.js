@@ -1,3 +1,5 @@
+// noinspection JSValidateJSDoc
+
 /* *************************************************************************************************
  *                                                                                                *
  * Please read the following tutorial before implementing tasks:                                   *
@@ -251,15 +253,20 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  let result = '';
+  // eslint-disable-next-line no-plusplus
+  for (let i = str.length - 1; i >= 0; i--) {
+    result += str[i];
+  }
+  return result;
 }
 
 
 /**
  * Reverse the specified integer number (put all digits in reverse order)
  *
- * @param {number} num
+ * @param {string} num
  * @return {number}
  *
  * @example:
@@ -268,8 +275,16 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  // eslint-disable-next-line no-param-reassign
+  num = num.toString();
+  // eslint-disable-next-line no-unused-vars
+  let result = '';
+  // eslint-disable-next-line no-plusplus
+  for (let i = num.length - 1; i >= 0; i--) {
+    result += num[i];
+  }
+  return Number(result);
 }
 
 
@@ -279,7 +294,6 @@ function reverseInteger(/* num */) {
  *
  * See algorithm here : https://en.wikipedia.org/wiki/Luhn_algorithm
  *
- * @param {number} cnn
  * @return {boolean}
  *
  * @example:
@@ -292,9 +306,24 @@ function reverseInteger(/* num */) {
  *   4571234567890111 => false
  *   5436468789016589 => false
  *   4916123456789012 => false
+ * @param ccn
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const str = ccn.toString();
+  let sum = 0;
+  const parity = str.length % 2;
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < str.length; i++) {
+    let num = Number(str[i]);
+    if (i % 2 === parity) {
+      num *= 2;
+      if (num > 9) {
+        num -= 9;
+      }
+    }
+    sum += num;
+  }
+  return Number(sum % 10) === 0;
 }
 
 /**
