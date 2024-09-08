@@ -172,9 +172,10 @@ function doRectanglesOverlap(rect1, rect2) {
  *
  */
 function isInsideCircle(circle, point) {
-  // eslint-disable-next-line no-restricted-properties,max-len
-  const distance = Math.sqrt(Math.pow(point.x - circle.center.x, 2) + Math.pow(point.y - circle.center.y, 2));
-  return distance <= circle.radius;
+  const lineX = point.x - circle.center.x;
+  const lineY = point.y - circle.center.y;
+  // eslint-disable-next-line no-restricted-properties
+  return Math.pow(lineX, 2) + Math.pow(lineY, 2) <= Math.pow(circle.radius, 2);
 }
 
 
