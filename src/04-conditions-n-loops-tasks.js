@@ -329,9 +329,8 @@ function isCreditCardNumber(ccn) {
 /**
  * Returns the digital root of integer:
  *   step1 : find sum of all digits
- *   step2 : if sum > 9 then goto step1 otherwise return the sum
+ *   step2 : if sum > 9 then go to step1 otherwise return the sum
  *
- * @param {number} n
  * @return {number}
  *
  * @example:
@@ -339,9 +338,20 @@ function isCreditCardNumber(ccn) {
  *   23456 ( 2+3+4+5+6 = 20, 2+0 = 2) => 2
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
+ * @param num
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  while (num > 9) {
+    let sum = 0;
+    let x = num;
+    while (x > 0) {
+      sum += x % 10;
+      x = Math.floor(x / 10);
+    }
+    // eslint-disable-next-line no-param-reassign
+    num = sum;
+  }
+  return num;
 }
 
 
