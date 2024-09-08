@@ -440,24 +440,33 @@ function getCommonDirectoryPath(pathes) {
   if (pathes.length === 0) {
     return '';
   }
-  let common = pathes[0];
+
+  let commonPath = pathes[0];
   // eslint-disable-next-line no-plusplus
   for (let i = 1; i < pathes.length; i++) {
+    const path = pathes[i];
     let j = 0;
-    while (j < common.length && j < pathes[i].length && common[j] === pathes[i][j]) {
+    while (j < commonPath.length && j < path.length && commonPath[j] === path[j]) {
       // eslint-disable-next-line no-plusplus
       j++;
     }
-    const lastSlashIndex = common.lastIndexOf('/', j);
-    if (lastSlashIndex === -1) {
-      return '';
-    }
-    common = common.substring(0, lastSlashIndex + 1);
+    commonPath = commonPath.substring(0, j);
   }
-  if (common === '' || common === '/') {
-    return common;
+
+  // If the common path is empty, it means there is no shared directory
+  // except for the root directory (/)
+  if (commonPath === '') {
+    return '/';
   }
-  return common.endsWith('/') ? common : `${common}/`;
+
+  // Find the last directory separator (/)
+  const lastSeparatorIndex = commonPath.lastIndexOf('/');
+  // If there is no separator, return the common path as is
+  if (lastSeparatorIndex === -1) {
+    return commonPath;
+  }
+  // Otherwise, return the path up to the last separator
+  return commonPath.substring(0, lastSeparatorIndex + 1);
 }
 
 
